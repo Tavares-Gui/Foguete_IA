@@ -1,0 +1,15 @@
+C:\Users\disrct\Desktop\foguete\bin\Debug\net7.0\foguete.exe
+C:\Users\disrct\Desktop\foguete\bin\Debug\net7.0\foguete.deps.json
+C:\Users\disrct\Desktop\foguete\bin\Debug\net7.0\foguete.runtimeconfig.json
+C:\Users\disrct\Desktop\foguete\bin\Debug\net7.0\foguete.dll
+C:\Users\disrct\Desktop\foguete\bin\Debug\net7.0\foguete.pdb
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\foguete.csproj.AssemblyReference.cache
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\foguete.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\foguete.AssemblyInfoInputs.cache
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\foguete.AssemblyInfo.cs
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\foguete.csproj.CoreCompileInputs.cache
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\foguete.dll
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\refint\foguete.dll
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\foguete.pdb
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\foguete.genruntimeconfig.cache
+C:\Users\disrct\Desktop\foguete\obj\Debug\net7.0\ref\foguete.dll
