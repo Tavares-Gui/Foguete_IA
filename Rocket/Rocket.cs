@@ -25,15 +25,17 @@ public class Rocket
         Cd0 = cd0;
         DryMass = dryMass;
         CrossSectionArea = crossSectionArea;
-        TimeData = (double[])massFlowData.Clone();
-        MassFlowData = (double[])timeData.Clone();
+        TimeData = (double[])timeData.Clone();
+        MassFlowData = (double[])massFlowData.Clone();
 
         Time = 0.0;
+        Height = 0.0;
+        Velocity = 0.0;
         Mass = DryMass + Integrate.Romberg(TimeData, MassFlowData);
     }
 
     public double CalculateMassFlow(double t)
-        => t > TimeData[^1] ? DryMass : Interp1D.Linear(TimeData, MassFlowData, t);
+        => t > TimeData[^1] ? 0.0 : Interp1D.Linear(TimeData, MassFlowData, t);
 
     public static double CalculateWeight(double h, double m)
         => Gravity.GetGravity(h) * (-m);
@@ -60,7 +62,7 @@ public class Rocket
     }
 
     public void UpdateVelocity(double t, double dt)  
-        => Velocity = MomentumEq(t) * dt;
+        => Velocity += MomentumEq(t) * dt;
 
     public void UpdateHeight(double dt)
         => Height += Velocity * dt;
@@ -88,15 +90,15 @@ public class Rocket
     public double LaunchUntilMax(double dt = 1e-1)
     {
         do FlyALittleBit(dt);
-        while (Velocity > 0);
+        while (Velocity > 0.0);
 
         return Height;
     }
 
     public double LaunchUntilGround(double dt = 1e-1)
     {
-        do FlyALittleBit(dt);
-        while (Height > 0);
+        do {Console.WriteLine("."); FlyALittleBit(dt); }
+        while (Height > 0.0);
 
         return Height;
     }

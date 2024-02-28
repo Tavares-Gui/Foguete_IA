@@ -11,7 +11,7 @@ public static class Integrate
             throw new ArgumentException("X and Y must have the same lenght");
         
         for (int i = 0; i < size; i++)
-            sum += 0.5 * (x[i + 1] - x[i]) * (y[i + 1] - y[i]);
+            sum += 0.5 * (x[i + 1] - x[i]) * (y[i + 1] + y[i]);
 
         return sum;
     }

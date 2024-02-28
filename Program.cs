@@ -1,8 +1,8 @@
 ﻿using AIContinuous.Nuenv;
 using AIContinuous.Rocket;
 
-var timeData = Space.Linear(0.0, 100.0, 11);
-var massFlowData = Space.Uniform(35.0, 11);
+var timeData = Space.Linear(0.0, 50.0, 11);
+var massFlowData = Space.Uniform(70.0, 11);
 
 var rocket = new Rocket(
     750.0,
