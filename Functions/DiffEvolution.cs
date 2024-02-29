@@ -118,7 +118,7 @@ public class DiffEvolution
 
         for (int i = 0; i < Dimension; i++)
         {
-            if (!(Random.Shared.NextDouble() < Recombination) || (i == Random.Shared.Next(Dimension)))
+            if (!(Random.Shared.NextDouble() < Recombination || i == Random.Shared.Next(Dimension)))
                 trial2[i] = trial[i];
         }
 
