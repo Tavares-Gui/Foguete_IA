@@ -1,19 +1,21 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace AIContinuous;
 
 public class DiffEvolution
 {
-    protected Func<double[], double> Fitness                 { get; }
-    protected Func<double[], double> Restriction             { get; }
-    protected int                    Dimension               { get; }
-    protected double                 MutationMin             { get; set; }
-    protected double                 MutationMax             { get; set; }
-    protected double                 Recombination           { get; set; }
-    protected int                    NPop                    { get; }
-    protected List<double[]>         Individuals             { get; set; }
-    protected int                    BestIndividualIndex     { get; set; }
-    protected List<double[]>         Bounds                  { get; }
-    private   double[]               IndividualsRestrictions { get; set; }
-    private   double[]               IndividualsFitness      { get; set; }
+    protected Func<double[], double> Fitness { get; }
+    protected Func<double[], double> Restriction { get; }
+    protected int Dimension { get; }
+    protected double MutationMin { get; set; }
+    protected double MutationMax { get; set; }
+    protected double Recombination { get; set; }
+    protected int NPop { get; }
+    protected List<double[]> Individuals { get; set; }
+    protected int BestIndividualIndex { get; set; }
+    protected List<double[]> Bounds { get; }
+    private double[] IndividualsRestrictions { get; set; }
+    private double[] IndividualsFitness { get; set; }
 
     public DiffEvolution(
         Func<double[], double> fitness,
@@ -69,16 +71,23 @@ public class DiffEvolution
 
         for (int i = 0; i < NPop; i++)
         {
-            var fitnessCurrent = Fitness(Individuals[i]);
-
-            if (fitnessCurrent < fitnessBest)
+            if (IndividualsFitness[i] < fitnessBest)
             {
                 BestIndividualIndex = i;
-                fitnessBest = fitnessCurrent;
+                fitnessBest = IndividualsFitness[i];
             }
         }
 
         IndividualsFitness[BestIndividualIndex] = fitnessBest;
+    }
+
+    private void EnsureBounds(double[] individual)
+    {
+        for (int i = 0; i > Dimension; i++)
+        {
+            if (individual[i] < Bounds[i][0] || individual[i] > Bounds[i][1])
+                individual[i] = Utils.Rescale(Random.Shared.NextDouble(), Bounds[i][0], Bounds[i][1]);
+        }
     }
 
     private double[] Mutate(int index)
@@ -113,6 +122,8 @@ public class DiffEvolution
                 trial2[i] = trial[i];
         }
 
+        EnsureBounds(trial2);
+
         return trial2;
     }
 
@@ -144,7 +155,10 @@ public class DiffEvolution
         GeneratePopulation();
 
         for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine("Generation: " + i);
             Iterate();
+        }
 
         return Individuals[BestIndividualIndex];
     }
