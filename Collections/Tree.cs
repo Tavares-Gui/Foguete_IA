@@ -1,11 +1,11 @@
-namespace foguete.Collections;
+namespace foguete.Collections; 
 
 public class Tree<T>
 {
     public TreeNode<T> Root { get; set; }
     public List<TreeNode<T>> Children => Root.Children;
 
-    public Tree(TreeNode<T> root)
+    public Tree(TreeNode<T> root = null!)
         => Root = root;
 
     public Tree(T value)
@@ -22,5 +22,7 @@ public class Tree<T>
 
     public void RemoveBranch(TreeNode<T> branch)
         => Root.RemoveChild(branch);
-}
+
+    public override string ToString()
+        => return Root.ToString();
 }
