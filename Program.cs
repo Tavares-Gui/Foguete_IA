@@ -14,4 +14,4 @@ using foguete.Collections;
 
  
 var node = new TreeNode<int>(6);
-var node2 = new TreeNode<int>(21, children: new List<TreeNode<int>> { node });
+var node2 = new TreeNode<int>(21, children: new List<TreeNode<int>> { node});
