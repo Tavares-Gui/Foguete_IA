@@ -16,15 +16,19 @@ public class TreeNode<T> : INode<T>
         Children = children ?? new List<TreeNode<T>>();
     }
 
-    public void AddChild(TreeNode<T> child)
+    public TreeNode<T> AddChild(TreeNode<T> child)
     {
         child.Parent = this;
         Children.Add(child);
+
+        return this;
     }
 
-    public void RemoveChild(TreeNode<T> child)
+    public TreeNode<T> RemoveChild(TreeNode<T> child)
     {
         child.Parent = null;
         Children.Remove(child);
+
+        return this;
     }
 }
