@@ -1,28 +1,29 @@
-namespace foguete.Collections; 
+namespace foguete.Collections;
 
 public class Tree<T>
 {
     public TreeNode<T> Root { get; set; }
-    public List<TreeNode<T>> Children => Root.Children;
+    public List<TreeNode<T>> Branches => Root.Children;
 
     public Tree(TreeNode<T> root = null!)
         => Root = root;
 
-    public Tree(T value)
-        => Root = new TreeNode<T>(value);
+    public Tree<T> AddBranch(TreeNode<T> branch)
+    {
+        Root.AddChild(branch);
+        branch.Parent = Root;
 
-    public void AddBranch(Tree<T> branch)
-        => Root.AddChild(branch.Root);
+        return this;
+    }
 
-    public void AddBranch(TreeNode<T> branch)
-        => Root.AddChild(branch);
+    public Tree<T> AddBranch(Tree<T> branch)
+    {
+        Root.AddChild(branch.Root);
+        branch.Root.Parent = Root;
 
-    public void RemoveBranch(Tree<T> branch)
-        => Root.RemoveChild(branch.Root);
-
-    public void RemoveBranch(TreeNode<T> branch)
-        => Root.RemoveChild(branch);
+        return this;
+    }
 
     public override string ToString()
-        => return Root.ToString();
+        => Root.ToString();
 }
