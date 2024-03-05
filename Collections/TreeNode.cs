@@ -4,8 +4,8 @@ namespace foguete.Collections;
 
 public class TreeNode<T> : INode<T>
 {
-    public T Value { get; set; }
-    public TreeNode<T>? Parent { get; set; }
+    public T                  Value    { get; set; }
+    public TreeNode<T>?       Parent   { get; set; }
     public List<TreeNode<T>> Children { get; set; }
 
     public TreeNode(
@@ -63,7 +63,9 @@ public class TreeNode<T> : INode<T>
     }
     
     public override string ToString()
-        => ToString("", true, true);
+    {
+        return ToString("", true, true);
+    }
 
     private string ToString(string indent, bool isLast, bool isRoot)
     {

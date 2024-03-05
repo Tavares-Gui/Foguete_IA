@@ -4,34 +4,39 @@ namespace foguete.Collections;
 
 public class GraphNode<T> : INode<T>
 {
-    public T Value { get; set; }
-    public List<GraphNode<T>> Neighbours { get; set; }
-    public int Connecton
-        => Neighbours.Count
+    public T             Value       { get; set; }
+    public List<GraphNode<T>> Neighbours  { get; set; }
+    public int           Connections => Neighbours.Count;
 
-    public GraphNode(T value, List<GraphNode<T>> neighbours = null!)
+    public GraphNode
+    (
+        T value = default(T),
+        List<GraphNode<T>> neighbours = null!
+    )
     {
         Value = value;
         Neighbours = neighbours ?? new List<GraphNode<T>>();
 
-        foreach (var neighbours in Neighbours)
-            neighbours.Neighbours.Add(this);
+        foreach (var neighbour in Neighbours)
+            if (!neighbour.Neighbours.Contains(this))
+                neighbour.Neighbours.Add(this);
     }
-
-    public GraphNode<T> AddNeighbours(GraphNode<T> node)
+    
+    public GraphNode<T> AddNode(GraphNode<T> graphNode)
     {
-        Neighbours.Add(node);
-        node.Neighbours.Add(this);
+        if (!Neighbours.Contains(graphNode))
+            Neighbours.Add(graphNode);
+        if (!graphNode.Neighbours.Contains(this))
+            graphNode.Neighbours.Add(this);
 
         return this;
     }
 
-    public GraphNode<T> RemoveNeighbours(GraphNode<T> node)
+    public GraphNode<T> RemoveNode(GraphNode<T> graphNode)
     {
-        Neighbours.Remove(node);
-        node.Neighbours.Remove(this);
+        Neighbours.Remove(graphNode);
+        graphNode.Neighbours.Remove(this);
 
         return this;
     }
-
 }

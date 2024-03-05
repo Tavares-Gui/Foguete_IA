@@ -2,8 +2,12 @@ using System.Diagnostics.Contracts;
 
 namespace foguete.Collections;
 
-public class Graph : GraphNode<T>
+public class Graph<T>
 {
-    public Graph(Task value, List<GraphNode<T>> neighbours = null!)
-        : base (value, neighbours);
+    public List<GraphNode<T>> Nodes { get; set; }
+
+    public Graph(List<GraphNode<T>> nodes = null!)
+    {
+        Nodes = nodes ?? new List<GraphNode<T>>();
+    }
 }
