@@ -2,12 +2,20 @@ using System.Diagnostics.Contracts;
 
 namespace foguete.Collections;
 
-public class Graph<T>
+public class Graph<T, TNode> where TNode : INode<T>
 {
-    public List<GraphNode<T>> Nodes { get; set; }
+    public List<TNode> Nodes { get; set; }
 
-    public Graph(List<GraphNode<T>> nodes = null!)
+    public Graph(List<TNode> nodes = null!)
     {
-        Nodes = nodes ?? new List<GraphNode<T>>();
+        Nodes = nodes ?? new List<TNode>();
+    }
+
+    public Graph<T, TNode> AddNode(TNode node)
+    {
+        if (!Nodes.Any(anyNode => EqualityComparer<TNode>.Default.Equals(anyNode, node)))    
+            Nodes.Add(node);
+
+        return this;
     }
 }

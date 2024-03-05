@@ -6,4 +6,4 @@ using foguete.Collections;
 
 // Searches.Searching();
 
-BuildTree.Planting();
+// BuildTree.Planting();
